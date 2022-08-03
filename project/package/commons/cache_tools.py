@@ -9,7 +9,7 @@ def serialized_lru_cache(func):
     return wrapper
 
 
-def oneweek_cache(func):
+def weekly_cache(func):
     week_idx = "2207"
     funcname = func.__name__
     pass

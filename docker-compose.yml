@@ -1,0 +1,15 @@
+version: '3'
+services:
+  pyenv:
+    build:
+      context: ./project
+      shm_size: "4gb"
+    command:
+      "sh -c 'tail -f /dev/null'"
+    environment:
+      - TZ=Asia/Tokyo
+      - PYTHONPATH="/project"
+    volumes:
+      - ./project:/project
+    network_mode: "host"
+

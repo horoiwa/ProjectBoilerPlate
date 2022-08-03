@@ -12,6 +12,8 @@
 
 - production.ymlで本番環境と区別する
 
+- データサイエンスならnetwork:host が楽。webappならブリッジ
+
 ## github actions
 
 - 基本のflake8 & pytest
@@ -22,6 +24,8 @@
 ## Project direcotory
 
 - manage.pyでスクリプトを管理する
+
+- `poetry install --no-root`
 
 - Djangoライクなモジュール構成で生産性を高める
 
