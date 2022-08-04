@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: buster
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.9"]
