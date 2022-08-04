@@ -7,5 +7,5 @@ def test_say_hello():
 
     assert say_spam(n=3) == "spam"*3
 
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         say_spam(n="3")
