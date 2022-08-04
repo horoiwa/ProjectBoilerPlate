@@ -22,7 +22,8 @@ jobs:
           pip install flake8 install pytest
       - name: Lint with flake8
         run: |
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          cd project
+          flake8 . --count --show-source --statistics
       - name: Install dependencies
         run: |
           pip install ./project
