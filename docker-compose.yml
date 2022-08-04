@@ -8,7 +8,6 @@ services:
       "sh -c 'tail -f /dev/null'"
     environment:
       - TZ=Asia/Tokyo
-      - PYTHONPATH="/project"
     volumes:
       - ./project:/project
     network_mode: "host"
