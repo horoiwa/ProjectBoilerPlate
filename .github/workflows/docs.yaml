@@ -1,0 +1,22 @@
+name: "Build sphinx document"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+          architecture: x64
+
+      - name: Install sphinx
+        run: |
+          pip install ./project
+
+      - name: Build html
+        run: |
+          cd ./project && sphinx-apidoc -e -f -o ./docs ./package && cd docs/ && make html

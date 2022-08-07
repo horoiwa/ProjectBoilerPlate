@@ -30,3 +30,8 @@ cd project
 poetry run sphinx-apidoc -e -f -o ./docs .
 cd docs && make html
 ```
+
+
+deploy key
+
+settings > secrets Add a new secret

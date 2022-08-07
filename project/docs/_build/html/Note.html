@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta directory &mdash; project  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> project
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">project</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Meta directory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Note.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="meta-directory">
+<h1>Meta directory<a class="headerlink" href="#meta-directory" title="Permalink to this heading"></a></h1>
+<section id="docker">
+<h2>docker関連<a class="headerlink" href="#docker" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>dockerは直接実行せずutil.shから実行する</p></li>
+<li><p>minicondaでpython環境構築し、poetryで依存を管理する (rdkit対策)</p></li>
+<li><p>実行ユーザーとコンテナユーザーのidを揃える</p></li>
+<li><p>slim-imageは想定外のバグが出るので本当に必要でない限り使わない</p></li>
+<li><p>production.ymlで本番環境と区別する</p></li>
+<li><p>データサイエンスならnetwork:host が楽。webappならブリッジ</p></li>
+</ul>
+</section>
+</section>
+<section id="sphinx">
+<h1>Sphinx<a class="headerlink" href="#sphinx" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>docstringsは自動ドキュメント化してしまう</p></li>
+<li><p>buildはghactionsに任せよう</p></li>
+</ul>
+</section>
+<section id="github-actions">
+<h1>github actions<a class="headerlink" href="#github-actions" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>基本のflake8 &amp; pytest</p></li>
+<li><p>sphinxはdocsブランチで自動更新する</p></li>
+</ul>
+</section>
+<section id="project-direcotory">
+<h1>Project direcotory<a class="headerlink" href="#project-direcotory" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>manage.pyでスクリプトを管理する</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">install</span> <span class="pre">--no-root</span></code></p></li>
+<li><p>Djangoライクなモジュール構成で生産性を高める</p></li>
+<li><p>app.pyにmockを構築する</p></li>
+<li><p>中間ファイルはstateをもたらすので共有したくない</p></li>
+<li><p>中間ファイルでなくキャッシュを活用する</p></li>
+</ul>
+<br>
+</section>
+<section id="id1">
+<h1>コードレベルの戦術<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="config">
+<h2>Config管理<a class="headerlink" href="#config" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>constantsとconfigを区別する</p></li>
+<li><p>configだけは型チェックする</p></li>
+<li><p>register_configでモジュール別のコンフィグを集約する</p></li>
+<li><p>configはyamlで永続化する</p></li>
+</ul>
+</section>
+<section id="logger">
+<h2>logger管理<a class="headerlink" href="#logger" title="Permalink to this heading"></a></h2>
+</section>
+<section id="id2">
+<h2>ハイパラチューニング<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>後付けハイパラチューニングはカオスを招く</p>
+</section>
+<section id="modin">
+<h2>modinを活用する<a class="headerlink" href="#modin" title="Permalink to this heading"></a></h2>
+<p>rayバックエンドの並列分散pandas. RAMに乗る程度のデータサイズなら手軽で◎</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">modin.pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">include_dashboard</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">local_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, horoiwa.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

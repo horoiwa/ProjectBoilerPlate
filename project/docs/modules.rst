@@ -1,8 +1,7 @@
-project
+package
 =======
 
 .. toctree::
    :maxdepth: 4
 
-   manage
    package

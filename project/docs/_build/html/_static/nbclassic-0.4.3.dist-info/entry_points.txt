@@ -1,0 +1,5 @@
+[console_scripts]
+jupyter-bundlerextension = nbclassic.bundler.bundlerextensions:main
+jupyter-nbclassic = nbclassic.notebookapp:main
+jupyter-nbextension = nbclassic.nbextensions:main
+jupyter-serverextension = nbclassic.serverextensions:main
