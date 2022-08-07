@@ -20,3 +20,13 @@
 ## Product env
 
 `sudo ./cmd.sh product`
+
+
+
+Update document
+
+```
+cd project
+poetry run sphinx-apidoc -e -f -o ./docs .
+cd docs && make html
+```

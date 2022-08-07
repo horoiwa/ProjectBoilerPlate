@@ -14,6 +14,12 @@
 
 - データサイエンスならnetwork:host が楽。webappならブリッジ
 
+## Sphinx
+
+- docstringsは自動ドキュメント化してしまう
+
+- buildはghactionsに任せよう
+
 ## github actions
 
 - 基本のflake8 & pytest
