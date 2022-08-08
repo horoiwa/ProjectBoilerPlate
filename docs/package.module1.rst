@@ -19,7 +19,8 @@ Submodules
    package.module1.config
    package.module1.main
    package.module1.models
-   package.module1.sub
+   package.module1.postprocess
+   package.module1.preprocess
 
 Module contents
 ---------------

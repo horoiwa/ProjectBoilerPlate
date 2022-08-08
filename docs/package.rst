@@ -16,10 +16,9 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   package.api
    package.config
+   package.constants
    package.main
-   package.models
 
 Module contents
 ---------------
