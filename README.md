@@ -1,6 +1,11 @@
+
 # Getting started
 
-## Local env
+
+https://horoiwa.github.io/ProjectBoilerPlate/
+
+
+- Local environment
 
 `cd project && poetry run --no-root`
 
@@ -8,7 +13,7 @@
 
 `poetry run pytest`
 
-## Container env
+- Container environment
 
 `sudo ./cmd.sh up`
 
@@ -17,21 +22,8 @@
 `cd project && python -V && pytest`
 
 
-## Product env
+- Product environment
 
 `sudo ./cmd.sh product`
 
 
-
-Update document
-
-```
-cd project
-poetry run sphinx-apidoc -e -f -o ./docs .
-cd docs && make html
-```
-
-
-deploy key
-
-settings > secrets Add a new secret
