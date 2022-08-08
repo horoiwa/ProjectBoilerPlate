@@ -7,4 +7,3 @@ def hello(name: str):
         name (str): _description_
     """
     return f"Hello, {name}"
-
