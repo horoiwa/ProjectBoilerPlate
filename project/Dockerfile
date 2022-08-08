@@ -18,6 +18,5 @@ ENV PYTHONPATH $PYTHONPATH:/project
 RUN echo $PATH && echo $PYTHONPATH
 RUN pip install poetry
 COPY --chown=$UID:$GID pyproject.toml poetry.lock* ./
-RUN echo $(ls -la)
 RUN poetry config virtualenvs.create false && \
     poetry install --no-root
