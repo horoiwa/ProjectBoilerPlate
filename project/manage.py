@@ -8,7 +8,8 @@ def cli():
 
 
 @cli.command()
-def generate_config():
+@click.option("--overwrite", is_flag=True, help="Overwrite existing config file")
+def generate_config(overwrite):
 
     if not click.confirm('Overwrite?'):
         raise click.Abort()
