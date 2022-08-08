@@ -1,4 +1,5 @@
 import click
+import os
 
 
 @click.group()
@@ -14,8 +15,9 @@ def generate_config():
 
 
 @cli.command()
-def runserver():
-    pass
+def startapp():
+    """Start streamlit app on localhost:8501"""
+    os.system("streamlit run app/app.py --server.address 'localhost'")
 
 
 if __name__ == '__main__':
