@@ -5,7 +5,7 @@
 https://horoiwa.github.io/ProjectBoilerPlate/
 
 
-- Local environment
+#### Local environment
 
 `cd project && poetry run --no-root`
 
@@ -13,16 +13,14 @@ https://horoiwa.github.io/ProjectBoilerPlate/
 
 `poetry run pytest`
 
-- Container environment
+#### Container environment
 
 `sudo ./cmd.sh up`
 
 `sudo ./cmd.sh login`
 
-`cd project && python -V && pytest`
 
-
-- Product environment
+#### Product environment
 
 `sudo ./cmd.sh product`
 
