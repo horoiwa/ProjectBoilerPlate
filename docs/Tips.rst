@@ -60,11 +60,37 @@ About
 
 dockerは再現性のために非常に重要ですが雑なdocker環境は面倒が多く、開発メンバに使ってもらえなくなりがちです.
 
-TIPS:
-
-- dockerはシェルスクリプトで起動できるようにする
-- 実行ユーザーとコンテナユーザーのUID, GIDを揃える
+- dockerを直接触らずともシェルスクリプトでコンテナログインできるようにする
+- 実行ユーザーとコンテナユーザーのUID, GIDを揃えると権限回りの煩わしさが低減される
 - webアプリ開発でないなら network: "host"が直感的
+
+.. code-block::
+
+    # cmd.sh
+    cmd=$1
+    uid=$(id -u)
+    gid=$(id -g)
+    gname=$(id -g -n)
+    uname=$(id -u -n)
+
+    if [ $cmd = "up" ]; then
+      echo "Build image and up compose"
+      sudo docker-compose build  \
+           --build-arg UID=$uid --build-arg GID=$gid --build-arg GROUPNAME=$gname
+      sudo docker-compose up -d
+      echo "Finished"
+
+    elif [ $cmd = "login" ]; then
+      echo "Login to container"
+      sudo docker-compose exec pyenv bash
+
+
+.. code-block::
+
+    # Dockerfile
+    RUN groupadd -g $GID $GROUPNAME && \
+        useradd -m -u $UID -g $GID $USERNAME
+    RUN usermod -aG sudo $USERNAME
 
 |
 
@@ -158,7 +184,7 @@ Poetryで管理すればローカルインストール可能になるため, ア
 -----------------------------------
 
 statelessなリポジトリがベストですが、現実的にはDBセットアップや巨大データの前処理など非定常的に実行が必要なスクリプトが発生します。
-これらの非定常作業スクリプトはプロジェクト直下のmanage.pyに集約することでブラックボックス化を防ぎます. (元ネタはdjango)
+これらの非定常作業スクリプトはプロジェクト直下のmanage.pyに集約することでブラックボックス化を防ぎます. (from django)
 
 .. code-block::
 
@@ -166,6 +192,9 @@ statelessなリポジトリがベストですが、現実的にはDBセットア
     python manage.py init_db
     # 週次バッチの実行
     python manage.py run_weekly_batch --log /log/yyyymmdd
+
+
+このようなコマンドラインツールの開発では ``click`` ライブラリを使用すると楽です
 
 |
 
@@ -187,18 +216,20 @@ statelessなリポジトリがベストですが、現実的にはDBセットア
 [S] 画一的なモジュール構成で協働コストを減らす
 ----------------------------------------------------------------
 
-サブモジュールごとのファイル名構成を似せる努力をするだけで協働コストが大きく低減される (元ネタはdjango)
+サブモジュールごとのファイル名構成を似せる努力をするだけで協働コストが大きく低減されます (from django)
 
 - 初見でもどこに何があるかを理解しやすく可読性が高い
 - 自然に関数を役割で区切るようになりテストしやすくなる
 
-横串モジュールの方が美しく見えるが縦串モジュールの方が管理が楽
+※ディレクトリ構成図
+
+横串モジュールの方が美しく見えますが縦串モジュールの方が管理が楽です
 
 - モジュール単位での切り捨て/復帰が楽になるのでR&Dと相性がよい
 - コンフリクト起こりにくくコードレビューが楽
 
 
-たてとよこ
+※たてとよこの図解
 
 
 
@@ -207,7 +238,11 @@ statelessなリポジトリがベストですが、現実的にはDBセットア
 [S] util.pyは気づかれないと意味が無い
 ---------------------------------------------
 
-commons/XXX_util.py
+よく使うutility関数を共用化することは生産性を向上させます。
+しかし、``common.py`` や ``util.py`` のように汎用的すぎるファイル名ではせっかくの便利な関数の存在にチームメンバーが気が付きません.
+
+そこで、 ``commons/ABC_util.py`` , ``commons/XYZ_util.py`` というように具体的なファイル名を与えます。
+
 
 |
 

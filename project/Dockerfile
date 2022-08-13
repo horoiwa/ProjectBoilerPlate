@@ -7,7 +7,7 @@ ARG USERNAME=jovyan
 
 RUN groupadd -g $GID $GROUPNAME && \
     useradd -m -u $UID -g $GID $USERNAME
-RUN usermod -aG sudo jovyan
+RUN usermod -aG sudo $USERNAME
 
 USER $USERNAME
 WORKDIR /project
