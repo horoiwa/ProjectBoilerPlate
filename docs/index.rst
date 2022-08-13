@@ -26,4 +26,6 @@ Tips
 .. toctree::
    :maxdepth: 4
 
+   Tips.rst
+
    Note.md

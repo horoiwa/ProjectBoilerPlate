@@ -12,6 +12,7 @@ numpy = "^1.23.1"
 modin = "^0.15.2"
 ray = "^1.13.0"
 streamlit = "^1.11.1"
+pydantic = "^1.9.1"
 
 [tool.poetry.dev-dependencies]
 jupyterlab = "^3.4.4"

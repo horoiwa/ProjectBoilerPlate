@@ -1,8 +1,7 @@
 
-# Getting started
+# BoilerPlate
 
-
-https://horoiwa.github.io/ProjectBoilerPlate/
+[docs] https://horoiwa.github.io/ProjectBoilerPlate/
 
 
 
