@@ -107,7 +107,7 @@ PythonプロジェクトのドキュメントはSphinx(HTML, PDF)で作成する
           - name: Install sphinx
             run: |
               python -m pip install --upgrade pip
-              pip install sphinx sphinx_rtd_theme myst-parser
+              pip install sphinx sphinx_rtd_theme myst-parser nbsphinx
           - name: Build html
             run: |
               sphinx-apidoc -e -f -o ./docs ./project/package
