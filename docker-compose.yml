@@ -10,5 +10,6 @@ services:
       - TZ=Asia/Tokyo
     volumes:
       - ./project:/project
+      - ./log:/log
     network_mode: "host"
 

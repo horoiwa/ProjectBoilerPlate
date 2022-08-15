@@ -1,5 +1,6 @@
 import click
 import os
+from pathlib import Path
 
 
 @click.group()
@@ -8,11 +9,16 @@ def cli():
 
 
 @cli.command()
-@click.option("--overwrite", is_flag=True, help="Overwrite existing config file")
-def generate_configfile(overwrite):
+@click.option("-f", "--filepath", type=str, default="config.json", help="Output config file path")
+def generate_config(filepath):
 
-    if not click.confirm('Overwrite?'):
-        raise click.Abort()
+    filepath = Path(filepath)
+
+    if filepath.exists():
+        if not click.confirm(f'{filepath} already exists, Overwrite?'):
+            raise click.Abort()
+        else:
+            filepath.unlink()
 
 
 @cli.command()

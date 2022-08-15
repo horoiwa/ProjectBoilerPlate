@@ -1,14 +1,44 @@
+"""
+pathなどの定数やaws/gcpクライアントのようなグローバルにひとつ存在すればよいstatelessな変数やインスタンスを配置
+"""
 from pathlib import Path
+import os
 
-from package.common.logging import get_logger
-from package.config import load_config
-"""
-PATHなどの定数やAWS/GCPクライアントのようなグローバルにひとつ存在すればよいstatelessな変数やインスタンスを配置
-"""
+from pydantic import validator
+from pydantic.dataclasses import dataclass
 
-HOME = Path(__file__).resolve().parents[1]
-ROOT = Path(__file__).resolve().parents[0]
+from package.module1.config import Module1Config
+
+
+HOME: Path = Path(__file__).resolve().parents[1]
+
+CONFIG_FILEPATH = os.environ.get("CONFIG_PATH", default=HOME / "config.yaml")
+
+
+@dataclass
+class ConfigSchema:
+
+    LOG_DIR: Path
+
+    project_name: str
+
+    MODULE1: Module1Config
+
+
+def load_config():
+    pass
+
+
+config = load_config()
+
+
+def get_logger():
+    return None
 
 logger = get_logger()
 
-config = load_config()
+
+
+if __name__ == '__main__':
+    print("constatns")
+    import pdb; pdb.set_trace()

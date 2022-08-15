@@ -7,6 +7,14 @@ gid=$(id -g)
 gname=$(id -g -n)
 uname=$(id -u -n)
 
+# プロジェクト直下に移動
+cd $(dirname $0)
+
+# ./log/が存在しない場合は作成
+if [ ! -d ./log ]; then
+  mkdir ./log
+fi
+
 if [ $cmd = "up" ]; then
   echo "Build image and up compose"
   sudo docker-compose build  \

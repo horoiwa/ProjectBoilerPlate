@@ -88,6 +88,7 @@ dockerは再現性のために非常に重要ですが雑なdocker環境は面�
 .. code-block::
 
     # Dockerfile
+    # こういう処理はentrypoint.shでやるのが一般的かも
     RUN groupadd -g $GID $GROUPNAME && \
         useradd -m -u $UID -g $GID $USERNAME
     RUN usermod -aG sudo $USERNAME
@@ -209,7 +210,7 @@ statelessなリポジトリがベストですが、現実的にはDBセットア
 .. toctree::
     :maxdepth: 2
 
-    notebooks/220701_ファイル名は結論
+    notebooks/220701_ファイル名は結論.ipynb
 
 |
 
@@ -253,6 +254,9 @@ statelessなリポジトリがベストですが、現実的にはDBセットア
 使いにくいConfigはハードコーディングの呼び水
 -------------------------------------------------
 
+- configはdataclassで管理する
+- pydantic.dataclassesで型チェックつきdataclass
+- モジュールごとにconfigクラスを作成する
 
 
 loggerは一括管理しないと意味が無い
