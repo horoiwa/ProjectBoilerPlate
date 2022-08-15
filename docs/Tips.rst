@@ -242,7 +242,7 @@ statelessなリポジトリがベストですが、現実的にはDBセットア
 よく使うutility関数を共用化することは生産性を向上させます。
 しかし、``common.py`` や ``util.py`` のように汎用的すぎるファイル名ではせっかくの便利な関数の存在にチームメンバーが気が付きません.
 
-そこで、 ``commons/ABC_util.py`` , ``commons/XYZ_util.py`` というように具体的なファイル名を与えます。
+そこで、 ``commons/ABC_util.py`` , ``commons/XYZ_tools.py`` というように具体的なファイル名を与えます。
 
 
 |
