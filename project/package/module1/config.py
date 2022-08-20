@@ -6,4 +6,3 @@ class Module1Config:
 
     spam: str
     ham: str
-

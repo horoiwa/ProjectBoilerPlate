@@ -1,9 +1,13 @@
+from package.constants import config, logger, print
 
 
-def hello(name: str):
-    """hello
+def main(msg: str):
+    print("Hello!")
+    logger.info(f"Hello, {msg}")
+    logger.critical(f"Criticl, {msg}")
 
-    Args:
-        name (str): _description_
-    """
-    return f"Hello, {name}"
+    print(config)
+
+
+if __name__ == '__main__':
+    main(msg="spam")

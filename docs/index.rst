@@ -20,12 +20,12 @@ Indices and tables
 * :ref:`search`
 
 
-Tips
-====
+About
+=======
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
 
-   Tips.rst
+   about.rst
 
    Note.md

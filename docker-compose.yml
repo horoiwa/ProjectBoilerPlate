@@ -5,7 +5,7 @@ services:
       context: ./project
       shm_size: "4gb"
     command:
-      "sh -c 'tail -f /dev/null'"
+      "sleep infinity"
     environment:
       - TZ=Asia/Tokyo
     volumes:

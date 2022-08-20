@@ -3,16 +3,18 @@ import functools
 from datetime import datetime
 
 
-def serialized_cache(term=Literal["daily", "weekly", "monthly"]):
+def serialized_cache(period=Literal["daily", "weekly", "monthly"]):
 
-    if term == "daily":
+    if period == "daily":
         salt = datetime.now().strftime("DAY%Y%m%d")
-    elif term == "weekly":
+    elif period == "weekly":
         salt = datetime.now().strftime("WEEK%Y%W")
-    elif term == "monthly":
+    elif period == "monthly":
         salt = datetime.now().strftime("MONTH%Y%M")
     else:
-        raise ValueError(f"Invalid term: {term}")
+        raise ValueError(f"Invalid term: {period}")
+
+    print(salt)
 
     def _serialized_cache(func):
 
