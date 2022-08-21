@@ -10,7 +10,7 @@ uname=$(id -u -n)
 # プロジェクト直下に移動
 cd $(dirname $0)
 
-# ./log/が存在しない場合は作成
+# bindmount先のディレクトリが存在しない場合は作成しておかないと所有権がrootになる
 if [ ! -d ./log ]; then
   mkdir ./log
 fi

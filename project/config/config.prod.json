@@ -1,0 +1,9 @@
+{
+    "strategy": "GP-EI",
+    "date_start": "2020-01-01",
+
+    "MD1": {
+        "alpha": 0.1,
+        "beta": 8
+    }
+}

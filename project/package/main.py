@@ -1,4 +1,5 @@
 from package.constants import config, logger, print
+from package.sub import sub
 
 
 def main(msg: str):
@@ -7,6 +8,8 @@ def main(msg: str):
     logger.critical(f"Criticl, {msg}")
 
     print(config)
+
+    sub()
 
 
 if __name__ == '__main__':

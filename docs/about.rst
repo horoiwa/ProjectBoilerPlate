@@ -256,9 +256,11 @@ Notebookの構成例:
 使いにくいConfigはハードコーディングの呼び水
 -------------------------------------------------
 
-- configはdataclassで管理する
-- pydantic.dataclassesで型チェックつきdataclass
-- モジュールごとにconfigクラスを作成する
+- configはjsonで管理しdataclassでデシリアライズすると、文字列とpythonオブジェクトをうまく橋渡しできる
+- pydantic.dataclassesで型チェックつきdataclass, とくにLiteralが便利
+- モジュールごとにconfigクラスを作成するとコンフリクトしにくくて楽
+
+` Config(strategy='TPE', date_start=datetime.date(2020, 1, 1), MD1=MD1Config(alpha=0.1, beta=8))`
 
 
 loggerは一括管理しないと意味が無い

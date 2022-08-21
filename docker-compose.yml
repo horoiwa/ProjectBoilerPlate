@@ -8,6 +8,7 @@ services:
       "sleep infinity"
     environment:
       - TZ=Asia/Tokyo
+      - CONFIG_FILENAME=config.json
     volumes:
       - ./project:/project
       - ./log:/log

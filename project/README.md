@@ -1,6 +1,0 @@
-# Project
-
-
-# Getting started
-
-
