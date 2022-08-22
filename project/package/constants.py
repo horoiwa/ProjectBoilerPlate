@@ -16,6 +16,7 @@ from package.module1.config import MD1Config
 
 HOME: Path = Path(__file__).resolve().parents[1]
 ROOT: Path = Path(__file__).resolve().parents[0]
+CACHE_DIR: Path = ROOT / "__cache__"
 
 TODAY: str = datetime.datetime.today().strftime("%Y%m%d")
 

@@ -6,6 +6,7 @@ __cache__/*
 .vscode/
 tmp/
 log/
+__cache__
 
 # C extensions
 *.so
