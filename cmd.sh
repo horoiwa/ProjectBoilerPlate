@@ -26,8 +26,10 @@ elif [ $cmd = "login" ]; then
   echo "Login to container"
   sudo docker-compose exec pyenv bash
 
-elif [ $cmd = "product" ]; then
-  echo "Start product run"
+elif [ $cmd = "production" ]; then
+  echo "Product run"
+  sudo docker-compose -f docker-compose.yml -f production.yml up -d
+  sudo docker-compose exec pyenv bash
 
 else
   echo "無効なコマンド: ${cmd}"

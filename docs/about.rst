@@ -63,6 +63,7 @@ dockerは再現性のために非常に重要ですが雑なdocker環境は面�
 - dockerを直接触らずともシェルスクリプトでコンテナログインできるようにする
 - 実行ユーザーとコンテナユーザーのUID, GIDを揃えると権限回りの煩わしさが低減される
 - webアプリ開発でないなら network: "host"が直感的
+- product, developは.envで管理してもよいがprod.ymlを分けた方が柔軟
 
 .. code-block::
 

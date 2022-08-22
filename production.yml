@@ -1,0 +1,8 @@
+version: '3'
+services:
+  pyenv:
+    command:
+      "sleep infinity"
+    environment:
+      - CONFIG_FILENAME=config.prod.json
+
