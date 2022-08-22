@@ -1,6 +1,8 @@
 import functools
 from datetime import datetime
+import hashlib
 import shutil
+import pickle
 
 from package.constants import CACHE_DIR
 
@@ -17,8 +19,34 @@ def serialized_cache(salt: str, maxsize: int = 64):
             CACHE_DIR.mkdir()
 
         def wrapper(*args, **kwargs):
-            import pdb; pdb.set_trace()
-            return func(*args, **kwargs)
+
+            # saltかargs, kwargsのいずれかが異なればことなるmessage_digestになる
+            # なおキーワード引数で実行したか順序引数で実行したかでも変わる
+            argslist = [str(v) for v in args] + [str(v) for v in kwargs.values()]
+            message = salt + func.__name__ + "_".join(argslist)
+            message_digest = hashlib.sha256(message.encode()).hexdigest()
+
+            match = list(CACHE_DIR.glob(f"{message_digest}.*"))
+            if match:
+                # キャッシュに存在する場合はロードする
+                # dataframeはparquet, それ以外はpickle
+                filepath = match[0]
+                if filepath.suffix == ".parquet":
+                    data = pd.read_parquet(CACHE_DIR / f"{message_digest}.parquet")
+                else:
+                    with open(CACHE_DIR / f"{message_digest}.pkl", "rb") as f:
+                        data = pickle.load(f)
+            else:
+                # キャッシュに存在しない場合は、func実行後に保存
+                # dataframeはparquet, それ以外はpickle
+                data = func(*args, **kwargs)
+                if isinstance(data, pd.DataFrame):
+                    data.to_parquet(CACHE_DIR / f"{message_digest}.parquet")
+                else:
+                    with open(CACHE_DIR / f"{message_digest}.pkl", "wb") as f:
+                        pickle.dump(data, f)
+
+            return data
 
         return wrapper
 
@@ -37,13 +65,32 @@ if __name__ == '__main__':
 
     import pandas as pd
     from sklearn.datasets import load_iris
+    import time
 
     @daily_cache
     def load_dataset(alpha, beta=3.2):
         iris = load_iris()
         df = pd.DataFrame(iris.data, columns=iris.feature_names)
+        time.sleep(5)
         return df
 
+    @daily_cache
+    def load_dict(alpha, beta):
+        time.sleep(5)
+        return {"a": alpha, "b": beta}
+
     df = load_dataset(2.1, 3.2)
+    print(df)
     df = load_dataset(alpha=2.1, beta=3.2)
+    print(df)
     df = load_dataset(beta=2.1, alpha=3.2)
+    print(df)
+
+    d = load_dict(2.1, 3.2)
+    print(d)
+    d = load_dict(alpha=2.1, beta=3.2)
+    print(d)
+    d = load_dict(beta=2.1, alpha=3.2)
+    print(d)
+
+    d = load_dict(beta={"a": 2}, alpha=3.2)
