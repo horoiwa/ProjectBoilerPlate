@@ -35,11 +35,12 @@ jobs:
         with:
           python-version: "3.9"
           architecture: x64
-      - uses: actions/setup-node@v3
+      - name: Install npm
+        uses: actions/setup-node@v3
         with:
           node-version: 16
       - name: install mermaid
-          run: npm install -g @mermaid-js/mermaid-cli
+        run: npm install -g @mermaid-js/mermaid-cli
       - name: Install sphinx
         run: |
           python -m pip install --upgrade pip
