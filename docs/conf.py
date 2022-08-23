@@ -40,4 +40,4 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-html_js_files = ["https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.9.1/mermaid.js"]
+mermaid_output_format="svg"
