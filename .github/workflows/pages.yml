@@ -42,10 +42,9 @@ jobs:
         run: npm install -g @mermaid-js/mermaid-cli
       - name: Install sphinx
         run: |
-          cd ./project
           python -m pip install --upgrade pip
-          pip install poetry
-          poetry install
+          pip install ./project
+          pip install sphinx sphinx_rtd_theme myst-parser nbsphinx sphinxcontrib-mermaid
           sudo apt update && sudo apt -y install pandoc
       - name: Run apidoc
         run: |
