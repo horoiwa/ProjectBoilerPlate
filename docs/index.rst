@@ -29,6 +29,7 @@ Mermaid diagram
       John->Bob: How about you?
       Bob-->John: Jolly good!
 
+|
 
 Indices and tables
 ==================
