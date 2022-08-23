@@ -3,10 +3,7 @@ import streamlit as st
 
 def main():
 
-    PAGES = {
-        "Main app": main_app,
-        "Sub app": sub_app
-    }
+    PAGES = {"Main app": main_app, "Sub app": sub_app}
 
     st.sidebar.title("sidebar")
 
@@ -29,5 +26,5 @@ def sub_app():
     st.text("sub App")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -2,17 +2,16 @@
 pathなどの定数やaws/gcpクライアントのようなグローバルにひとつ存在すればよいstatelessな変数やインスタンスを配置
 """
 import datetime
+import json
 import logging
+import os
 from pathlib import Path
 from typing import Literal
-import json
-import os
 
 from pydantic.dataclasses import dataclass
 from pydantic.json import pydantic_encoder
 
 from package.module1.config import MD1Config
-
 
 HOME: Path = Path(__file__).resolve().parents[1]
 ROOT: Path = Path(__file__).resolve().parents[0]
@@ -45,9 +44,9 @@ def _setup_config():
     try:
         config = Config(**config_dict)
     except TypeError:
-        print("===="*15)
+        print("====" * 15)
         print("Error: config.jsonとConfigデータクラスが不整合")
-        print("===="*15)
+        print("====" * 15)
         raise
 
     return config
@@ -66,22 +65,23 @@ def _setup_logger():
     logger.setLevel(logging.DEBUG)
 
     formatter = logging.Formatter(
-        '[%(levelname)s] %(asctime)s %(filename)s:%(lineno)d %(message)s',
-        datefmt='%m/%d:%I:%M')
+        "[%(levelname)s] %(asctime)s %(filename)s:%(lineno)d %(message)s",
+        datefmt="%m/%d:%I:%M",
+    )
 
     stream_handler = logging.StreamHandler()
     stream_handler.setLevel(logging.INFO)
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
-    file_handler = logging.FileHandler(
-        log_dir / "log.txt", mode='a', encoding='utf-8')
+    file_handler = logging.FileHandler(log_dir / "log.txt", mode="a", encoding="utf-8")
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
     warning_handler = logging.FileHandler(
-        log_dir / "warning.txt", mode='a', encoding='utf-8')
+        log_dir / "warning.txt", mode="a", encoding="utf-8"
+    )
     warning_handler.setLevel(logging.WARN)
     warning_handler.setFormatter(formatter)
     logger.addHandler(warning_handler)
