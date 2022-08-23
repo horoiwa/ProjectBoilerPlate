@@ -1,7 +1,12 @@
 
 # BoilerPlate
 
+[![Deploy static content to Pages](https://github.com/horoiwa/ProjectBoilerPlate/actions/workflows/pages.yml/badge.svg?event=page_build)](https://github.com/horoiwa/ProjectBoilerPlate/actions/workflows/pages.yml)
+
+[![Python package](https://github.com/horoiwa/ProjectBoilerPlate/actions/workflows/ci.yaml/badge.svg)](https://github.com/horoiwa/ProjectBoilerPlate/actions/workflows/ci.yaml)
+
 [docs] https://horoiwa.github.io/ProjectBoilerPlate/
+
 
 
 
