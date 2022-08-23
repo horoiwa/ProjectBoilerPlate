@@ -52,16 +52,13 @@ def serialized_cache(salt: str, maxsize: int = 64):
 
 
 daily_cache = functools.partial(
-    serialized_cache, salt=datetime.now().strftime("DAY%Y%m%d")
-)()
+    serialized_cache, salt=datetime.now().strftime("DAY%Y%m%d"))()
 
 weekly_cache = functools.partial(
-    serialized_cache, salt=datetime.now().strftime("WEEK%Y%W")
-)()
+    serialized_cache, salt=datetime.now().strftime("WEEK%Y%W"))()
 
 monthly_cache = functools.partial(
-    serialized_cache, salt=datetime.now().strftime("MONTH%Y%M")
-)()
+    serialized_cache, salt=datetime.now().strftime("MONTH%Y%M"))()
 
 
 if __name__ == "__main__":
