@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eu
 
 cmd=$1
 
@@ -13,7 +14,14 @@ uname=$(id -u -n)
 # プロジェクト直下に移動
 cd $(dirname $0)
 
-# bindmount先のディレクトリが存在しない場合は作成しておかないと所有権がrootになる
+# root実行は想定していない
+if [[ $uid = "0" ]]; then
+  echo "Error: Please run as non-root user"
+  echo "Exit"
+  exit 1
+fi
+
+# bind-mount先のディレクトリが存在しない場合は事前作成しておかないと所有権がrootになる
 if [ ! -d ./log ]; then
   mkdir ./log
 fi
