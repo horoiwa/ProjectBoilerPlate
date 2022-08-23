@@ -79,9 +79,7 @@ def _setup_logger():
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
-    warning_handler = logging.FileHandler(
-        log_dir / "warning.txt", mode="a", encoding="utf-8"
-    )
+    warning_handler = logging.FileHandler(log_dir / "warning.txt", mode="a", encoding="utf-8")
     warning_handler.setLevel(logging.WARN)
     warning_handler.setFormatter(formatter)
     logger.addHandler(warning_handler)

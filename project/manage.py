@@ -10,9 +10,7 @@ def cli():
 
 
 @cli.command()
-@click.option(
-    "-f", "--filepath", type=str, default="config.json", help="Output config file path"
-)
+@click.option("-f", "--filepath", type=str, default="config.json", help="Output config file path")
 def generate_config(filepath):
 
     filepath = Path(filepath)
