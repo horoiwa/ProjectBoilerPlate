@@ -40,7 +40,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install sphinx sphinx_rtd_theme myst-parser nbsphinx
           pip install sphinxcontrib-mermaid
-          sudo apt install pandoc
+          sudo apt update
+          sudo apt -y install pandoc node-mermaid
       - name: Build html
         run: |
           cd ./project

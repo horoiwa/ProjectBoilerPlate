@@ -36,7 +36,7 @@ Jupyter integration
 =====================
 
 .. toctree::
-    :maxdepth: 4
+    :maxdepth: 2
 
     notebooks/sample.ipynb
 
@@ -47,9 +47,9 @@ Use markdown
 ==============
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
-   Note.md
+    Note.md
 
 |
 
