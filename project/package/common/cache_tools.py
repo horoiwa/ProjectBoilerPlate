@@ -20,10 +20,9 @@ def serialized_cache(salt: str, maxsize: int = 64):
 
         def wrapper(*args, **kwargs):
 
-            # saltかargs, kwargsのいずれかが異なればことなるmessage_digestになる
-            # なおキーワード引数で実行したか順序引数で実行したかでも変わる
+            # saltか引数が異なれば異なるmessage_digestになる
             argslist = [str(v) for v in args] + [str(v) for v in kwargs.values()]
-            message = salt + func.__name__ + "_".join(argslist)
+            message = salt + "_" + func.__name__ + "_".join(argslist)
             message_digest = hashlib.sha256(message.encode()).hexdigest()
 
             match = list(CACHE_DIR.glob(f"{message_digest}.*"))
