@@ -12,7 +12,7 @@ Welcome to project's documentation!
    modules
 
 
-Mermaid diagram
+Mermaid integration
 ===================
 
 .. mermaid::
@@ -28,6 +28,28 @@ Mermaid diagram
       John-->Alice: Great!
       John->Bob: How about you?
       Bob-->John: Jolly good!
+
+|
+
+
+Jupyter integration
+=====================
+
+.. toctree::
+    :maxdepth: 4
+
+    notebooks/sample.ipynb
+
+|
+
+
+Use markdown
+==============
+
+.. toctree::
+    :maxdepth: 4
+
+   Note.md
 
 |
 
