@@ -34,9 +34,14 @@ if [ $cmd = "up" ]; then
   echo "Finished"
 
 elif [ $cmd = "login" ]; then
-  echo "Login to container"
-  sudo docker-compose -p $project_tag exec pyenv bash
-
+  # コンテナがupしているかチェック
+  if [ "`sudo docker-compose -p $project_tag ps | grep 'Up'`" ]; then
+    echo "Login to container"
+    sudo docker-compose -p $project_tag exec pyenv bash
+  else
+    echo "Error: コンテナが起動していません"
+    echo ":: 事前に './cmd.sh up' を実行してください"
+  fi
 elif [ $cmd = "production" ]; then
   echo "Product run"
   sudo docker-compose -p $production_tag build  \
