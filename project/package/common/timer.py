@@ -2,6 +2,10 @@ import time
 
 
 class Timer:
+    """ Example
+        with Timer(tag="proc_a"):
+            proc_a()
+    """
     def __init__(self, tag: str):
         self.tag = tag
 

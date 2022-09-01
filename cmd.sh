@@ -26,6 +26,7 @@ if [ ! -d ./log ]; then
   mkdir ./log
 fi
 
+# up: コンテナimageのbuildとup
 if [ $cmd = "up" ]; then
   echo "Build image and up compose"
   sudo docker-compose -p $project_tag build  \
@@ -33,14 +34,14 @@ if [ $cmd = "up" ]; then
   sudo docker-compose -p $project_tag up -d
   echo "Finished"
 
+# login: コンテナへBashでログイン
 elif [ $cmd = "login" ]; then
   # コンテナがupしているかチェック
   if [ "`sudo docker-compose -p $project_tag ps | grep 'Up'`" ]; then
     echo "Login to container"
     sudo docker-compose -p $project_tag exec pyenv bash
   else
-    echo "Error: コンテナが起動していません"
-    echo ":: 事前に './cmd.sh up' を実行してください"
+    echo "Error: コンテナが起動していません, './cmd.sh up' を実行してください"
   fi
 elif [ $cmd = "production" ]; then
   echo "Product run"
