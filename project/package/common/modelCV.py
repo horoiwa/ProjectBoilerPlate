@@ -12,10 +12,13 @@ from package.constants import logger
 
 
 class BaseModelCV(ABC):
-
-    def __init__(self, n_splits: int = 3, n_repeats: int = 1,
-                 metric_func: Optional[Callable] = None,
-                 direction: Literal["minimize", "maximize"] = "maximize"):
+    def __init__(
+        self,
+        n_splits: int = 3,
+        n_repeats: int = 1,
+        metric_func: Optional[Callable] = None,
+        direction: Literal["minimize", "maximize"] = "maximize",
+    ):
         """sklearn.linear_model.RidgeCV のTPE版
 
         Args:
@@ -64,7 +67,7 @@ class BaseModelCV(ABC):
             best_params = {}
         else:
             #: Run hyper params optimization
-            best_trial, best_params= self._param_search(X, Y, n_trials)
+            best_trial, best_params = self._param_search(X, Y, n_trials)
             logger.info("==== Best Trial =====")
             logger.info(best_trial)
             logger.info("==== Best Params =====")
@@ -74,7 +77,6 @@ class BaseModelCV(ABC):
         self.model.fit(X, Y)
 
     def _param_search(self, X: pd.DataFrame, Y: pd.Series, n_trials: int):
-
         def objective(trial):
             params = self.define_search_space(trial)
             model = self.model_class(**params)
@@ -103,20 +105,18 @@ class BaseModelCV(ABC):
 
 
 class RidgeCV(BaseModelCV):
-
     @property
     def model_class(self):
         return Ridge
 
     def define_search_space(self, trial):
         params = {
-            "alpha": trial.suggest_loguniform('alpha', 1e-3, 1e2),
+            "alpha": trial.suggest_loguniform("alpha", 1e-3, 1e2),
         }
         return params
 
 
 class SVRCV(BaseModelCV):
-
     @property
     def model_class(self):
         return SVR
@@ -124,35 +124,33 @@ class SVRCV(BaseModelCV):
     def define_search_space(self, trial):
         params = {
             "kernel": "rbf",
-            "C": trial.suggest_loguniform('C', 1e-2, 1e2),
-            "epsilon": trial.suggest_loguniform('epsilon', 1e-3, 1e2),
-            "gamma": trial.suggest_loguniform('gamma', 1e-3, 1e3),
+            "C": trial.suggest_loguniform("C", 1e-2, 1e2),
+            "epsilon": trial.suggest_loguniform("epsilon", 1e-3, 1e2),
+            "gamma": trial.suggest_loguniform("gamma", 1e-3, 1e3),
         }
 
         return params
 
 
 class LGBRCV(BaseModelCV):
-
     @property
     def model_class(self):
         return LGBMRegressor
 
     def define_search_space(self, trial):
         params = {
-            'num_leaves': trial.suggest_int('num_leaves', 2, 256),
-            'subsample': trial.suggest_uniform('subsample', 0.5, 1.0),
-            'max_depth': trial.suggest_int('max_depth', 1, 8),
-            'min_child_samples': trial.suggest_int('min_child_samples', 8, 128),
-            'extra_trees': True,
-            'reg_alpha': trial.suggest_loguniform('reg_alpha', 1e-8, 10.0),
-            'reg_lambda': trial.suggest_loguniform('reg_lambda', 1e-8, 10.0),
+            "num_leaves": trial.suggest_int("num_leaves", 2, 256),
+            "subsample": trial.suggest_uniform("subsample", 0.5, 1.0),
+            "max_depth": trial.suggest_int("max_depth", 1, 8),
+            "min_child_samples": trial.suggest_int("min_child_samples", 8, 128),
+            "extra_trees": True,
+            "reg_alpha": trial.suggest_loguniform("reg_alpha", 1e-8, 10.0),
+            "reg_lambda": trial.suggest_loguniform("reg_lambda", 1e-8, 10.0),
         }
         return params
 
 
 class SVCCV(BaseModelCV):
-
     @property
     def model_class(self):
         raise SVC
@@ -160,34 +158,33 @@ class SVCCV(BaseModelCV):
     def define_search_space(self, trial):
         params = {
             "kernel": "rbf",
-            "C": trial.suggest_loguniform('C', 1e-2, 1e2),
-            "gamma": trial.suggest_loguniform('gamma', 1e-3, 1e3)
+            "C": trial.suggest_loguniform("C", 1e-2, 1e2),
+            "gamma": trial.suggest_loguniform("gamma", 1e-3, 1e3),
         }
         return params
 
 
 class LGBCV(BaseModelCV):
-
     @property
     def model_class(self):
         return LGBMClassifier
 
     def define_search_space(self, trial):
         params = {
-            'num_leaves': trial.suggest_int('num_leaves', 2, 256),
-            'subsample': trial.suggest_uniform('subsample', 0.5, 1.0),
-            'max_depth': trial.suggest_int('max_depth', 1, 8),
-            'min_child_samples': trial.suggest_int('min_child_samples', 8, 128),
-            'extra_trees': True,
-            'reg_alpha': trial.suggest_loguniform('reg_alpha', 1e-8, 10.0),
-            'reg_lambda': trial.suggest_loguniform('reg_lambda', 1e-8, 10.0),
+            "num_leaves": trial.suggest_int("num_leaves", 2, 256),
+            "subsample": trial.suggest_uniform("subsample", 0.5, 1.0),
+            "max_depth": trial.suggest_int("max_depth", 1, 8),
+            "min_child_samples": trial.suggest_int("min_child_samples", 8, 128),
+            "extra_trees": True,
+            "reg_alpha": trial.suggest_loguniform("reg_alpha", 1e-8, 10.0),
+            "reg_lambda": trial.suggest_loguniform("reg_lambda", 1e-8, 10.0),
         }
         return params
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     from sklearn.datasets import load_boston
+
     bos = load_boston()
     X = pd.DataFrame(bos.data, columns=bos.feature_names)
     Y = pd.DataFrame(bos.target, columns=["Price"])
