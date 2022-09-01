@@ -1,7 +1,6 @@
+import datetime
 import logging
 from pathlib import Path
-import datetime
-
 
 TODAY: str = datetime.datetime.today().strftime("%Y%m%d")
 
