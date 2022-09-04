@@ -10,7 +10,7 @@ from typing import Literal
 from pydantic.dataclasses import dataclass
 from pydantic.json import pydantic_encoder
 
-from package.common.setup import setup_logger
+from package.common.setup_logger import setup_logger
 from package.module1.config import MD1Config
 
 HOME: Path = Path(__file__).resolve().parents[1]
