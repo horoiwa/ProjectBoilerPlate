@@ -81,7 +81,7 @@ def setup_logger():
 
     log_dir: Path = Path("/log") / TODAY
     if not log_dir.exists():
-        log_dir.mkdir()
+        log_dir.mkdir(parents=True)
 
     logger_name = "project"
     logger = logging.getLogger(logger_name)
