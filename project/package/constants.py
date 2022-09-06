@@ -79,7 +79,7 @@ class ColoredStreamHandler(logging.StreamHandler):
 
 def setup_logger():
 
-    log_dir: Path = Path("/log") / TODAY
+    log_dir: Path = HOME / "log" / TODAY
     if not log_dir.exists():
         log_dir.mkdir(parents=True)
 

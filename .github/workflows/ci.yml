@@ -27,7 +27,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install ./project
-          mkdir /log
       - name: Test with pytest
         run: |
           pytest
