@@ -21,11 +21,6 @@ if [[ $uid = "0" ]]; then
   exit 1
 fi
 
-# bind-mount先のディレクトリが存在しない場合は事前作成しておかないと所有権がrootになる
-if [ ! -d ./log ]; then
-  mkdir ./log
-fi
-
 # up: コンテナimageのbuildとup
 if [ $cmd = "up" ]; then
   echo "Build image and up compose"
