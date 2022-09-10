@@ -3,7 +3,7 @@ services:
   pyenv:
     build:
       context: ./project
-      shm_size: "4gb"
+      shm_size: "2gb"
     command:
       "sleep infinity"
     environment:

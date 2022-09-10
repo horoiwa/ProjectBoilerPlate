@@ -97,12 +97,12 @@ def setup_logger():
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
-    file_handler = logging.FileHandler(log_dir / "log.txt", mode="a", encoding="utf-8")
+    file_handler = logging.FileHandler(log_dir / "all.log", mode="a", encoding="utf-8")
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
-    warning_handler = logging.FileHandler(log_dir / "warning.txt", mode="a", encoding="utf-8")
+    warning_handler = logging.FileHandler(log_dir / "warnings.log", mode="a", encoding="utf-8")
     warning_handler.setLevel(logging.WARN)
     warning_handler.setFormatter(formatter)
     logger.addHandler(warning_handler)

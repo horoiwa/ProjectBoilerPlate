@@ -3,7 +3,7 @@ set -eu
 
 cmd=$1
 
-project_tag="$(basename $(pwd))_$(whoami)"
+tag="$(basename $(pwd))_$(whoami)"
 production_tag="$(basename $(pwd))_prod"
 
 uid=$(id -u)
@@ -24,26 +24,26 @@ fi
 # up: コンテナimageのbuildとup
 if [ $cmd = "up" ]; then
   echo "Build image and up compose"
-  sudo docker-compose -p $project_tag build  \
+  sudo docker-compose -p $tag build  \
        --build-arg UID=$uid --build-arg GID=$gid --build-arg GROUPNAME=$gname
-  sudo docker-compose -p $project_tag up -d
+  sudo docker-compose -p $tag up -d
   echo "Finished"
 
 # login: コンテナへBashでログイン
 elif [ $cmd = "login" ]; then
   # コンテナがupしているかチェック
-  if [ "`sudo docker-compose -p $project_tag ps | grep 'Up'`" ]; then
+  if [ "`sudo docker-compose -p $tag ps | grep 'Up'`" ]; then
     echo "Login to container"
-    sudo docker-compose -p $project_tag exec pyenv bash
+    sudo docker-compose -p $tag exec pyenv bash
   else
     echo "Error: コンテナが起動していません, './cmd.sh up' を実行してください"
   fi
+
 elif [ $cmd = "production" ]; then
   echo "Product run"
   sudo docker-compose -p $production_tag build  \
        --build-arg UID=$uid --build-arg GID=$gid --build-arg GROUPNAME=$gname
   sudo docker-compose -p $production_tag -f docker-compose.yml -f production.yml up -d
-  sudo docker-compose -p $production_tag exec pyenv bash
 
 else
   echo "無効なコマンド: ${cmd}"
