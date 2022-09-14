@@ -6,7 +6,7 @@
 [docs] https://horoiwa.github.io/ProjectBoilerPlate/
 
 
-- Build image and up container: `/cmd.sh up`
+- Build image and up container: `./cmd.sh up`
 
 - login to the container: `./cmd.sh login`
 
