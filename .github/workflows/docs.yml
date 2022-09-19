@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOC_BRANCH: documents
+  DOC_BRANCH: __docs__
 
 jobs:
   build-sphinx:
@@ -54,4 +54,4 @@ jobs:
         run: |
           git add --all
           git commit -m "update docs"
-          git push -u origin $DOC_BRANCH
+          git push --force -u origin $DOC_BRANCH
