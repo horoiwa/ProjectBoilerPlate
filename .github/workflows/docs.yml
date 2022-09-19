@@ -49,4 +49,4 @@ jobs:
         run: |
           git add --all
           git commit -m "update docs"
-          git push
+          git push -u origin $DOC_BRANCH
