@@ -8,11 +8,6 @@ tmp/
 log/
 __cache__
 
-# sphinx
-_build/
-_static/
-_templates/
-
 # C extensions
 *.so
 

@@ -1,21 +1,17 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Doc
+# Workflow for build sphinx html/pdf to documents branch
+name: Docs
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-env:
-  DOC_BRANCH: documents
 
 jobs:
-  deploy:
+  sphinx:
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      DOC_BRANCH: documents
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
