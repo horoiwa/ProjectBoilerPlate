@@ -45,6 +45,9 @@ jobs:
           cd ./docs
           make html
           make latexpdf
+          cp ./_build/html/* .
+          cp -r ./_build/latex ./pdf
+          cp -r ./_build/html ./html
       - name: Commit and push to documents branch
         run: |
           git add --all
