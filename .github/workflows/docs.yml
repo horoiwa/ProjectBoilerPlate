@@ -26,6 +26,7 @@ jobs:
         run: |
           git config --global user.name $GITHUB_ACTOR
           git config --global user.email $GITHUB_ACTOR@users.noreply.github.com
+          git checkout -B $DOC_BRANCH
       - name: Setup npm
         uses: actions/setup-node@v3
         with:
@@ -51,6 +52,5 @@ jobs:
       - name: Commit and push to documents branch
         if: steps.verify_diff.outputs.new_translations_exist == 'true'
         run: |
-          git checkout $DOC_BRANCH 2>/dev/null || git checkout -b $DOC_BRANCH
           git commit -am "update documents"
           git push
