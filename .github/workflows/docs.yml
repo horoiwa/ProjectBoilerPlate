@@ -47,9 +47,9 @@ jobs:
           make latexpdf
       - name: move dirs
         run: |
-          mv docs/ _docs/
-          cp -rp _docs/_build/html  docs/
-          cp -rp _docs/_build/latex pdf/
+          mv docs/ __docs__/
+          cp -rp __docs__/_build/html  docs/
+          cp -rp __docs__/_build/latex pdf/
       - name: Commit and push to documents branch
         run: |
           git add --all
