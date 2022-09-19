@@ -57,23 +57,25 @@ def load_config():
 
 config = load_config()
 
-# From https://pod.hatenablog.com/entry/2020/03/01/221715
-cmap = {
-    "TRACE": "[TRACE]",
-    "DEBUG": "\x1b[0;36mDEBUG\x1b[0m",
-    "INFO": "\x1b[0;32mINFO\x1b[0m",
-    "WARNING": "\x1b[0;33mWARN\x1b[0m",
-    "WARN": "\x1b[0;33mwWARN\x1b[0m",
-    "ERROR": "\x1b[0;31mERROR\x1b[0m",
-    "ALERT": "\x1b[0;37;41mALERT\x1b[0m",
-    "CRITICAL": "\x1b[0;37;41mCRITICAL\x1b[0m",
-}
 
 
 class ColoredStreamHandler(logging.StreamHandler):
+
+    # From https://pod.hatenablog.com/entry/2020/03/01/221715
+    cmap = {
+        "TRACE": "[TRACE]",
+        "DEBUG": "\x1b[0;36mDEBUG\x1b[0m",
+        "INFO": "\x1b[0;32mINFO\x1b[0m",
+        "WARNING": "\x1b[0;33mWARN\x1b[0m",
+        "WARN": "\x1b[0;33mwWARN\x1b[0m",
+        "ERROR": "\x1b[0;31mERROR\x1b[0m",
+        "ALERT": "\x1b[0;37;41mALERT\x1b[0m",
+        "CRITICAL": "\x1b[0;37;41mCRITICAL\x1b[0m",
+    }
+
     def emit(self, record: logging.LogRecord) -> None:
         record = copy.deepcopy(record)
-        record.levelname = cmap[record.levelname]
+        record.levelname = self.cmap[record.levelname]
         super().emit(record)
 
 

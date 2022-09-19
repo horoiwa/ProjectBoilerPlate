@@ -3,13 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+===================================
 Welcome to project's documentation!
 ===================================
-
-.. toctree::
-   :maxdepth: 4
-
-   modules
 
 
 Mermaid integration
@@ -46,20 +42,10 @@ Use markdown
 
 |
 
-Indices and tables
+Modules
 ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
-
-About
-=======
-
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
-   about.rst
-
-   Note.md
+   modules
