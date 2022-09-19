@@ -41,8 +41,8 @@ jobs:
         run: |
           sphinx-apidoc -e -f -o ./docs ./project/package
           cd ./docs
-          make html ./html
-          make latexpdf ./pdf
+          make html
+          make latexpdf
       - name: Check if there is any new translations
         id: verify_diff
         run: |
