@@ -58,7 +58,6 @@ def load_config():
 config = load_config()
 
 
-
 class ColoredStreamHandler(logging.StreamHandler):
 
     # From https://pod.hatenablog.com/entry/2020/03/01/221715
