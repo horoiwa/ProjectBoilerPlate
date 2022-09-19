@@ -46,7 +46,6 @@ jobs:
           make html
           make latexpdf
       - name: Commit and push to documents branch
-        if: steps.verify_diff.outputs.new_translations_exist == 'true'
         run: |
           git commit -am "update docs"
           git push
