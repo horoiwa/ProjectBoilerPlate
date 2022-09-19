@@ -12,7 +12,7 @@ env:
   DOC_BRANCH: documents
 
 jobs:
-  sphinx:
+  build-sphinx:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -45,12 +45,8 @@ jobs:
           cd ./docs
           make html
           make latexpdf
-      - name: Check if there is any new translations
-        id: verify_diff
-        run: |
-          git diff --quiet || echo "::set-output name=new_translations_exist::true"
       - name: Commit and push to documents branch
         if: steps.verify_diff.outputs.new_translations_exist == 'true'
         run: |
-          git commit -am "update documents"
+          git commit -am "update docs"
           git push
