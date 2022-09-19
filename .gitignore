@@ -7,7 +7,7 @@ __cache__/*
 tmp/
 log/
 __cache__
-docs/_build/*
+docs/_build/
 
 # C extensions
 *.so

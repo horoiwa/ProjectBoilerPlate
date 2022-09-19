@@ -39,15 +39,17 @@ jobs:
           pip install ./project
           pip install sphinx sphinx_rtd_theme myst-parser nbsphinx sphinxcontrib-mermaid
           sudo apt-get update && sudo apt-get -y install pandoc latexmk texlive-lang-japanese texlive-latex-extra
-      - name: Run apidoc
+      - name: build sphinx
         run: |
           sphinx-apidoc -e -f -o ./docs ./project/package
           cd ./docs
           make html
           make latexpdf
-          cp ./_build/html/* .
-          cp -r ./_build/latex ./pdf
-          cp -r ./_build/html ./html
+      - name: move dirs
+        run: |
+          mv docs/ _docs/
+          cp -rp _docs/_build/html  docs/
+          cp -rp _docs/_build/latex pdf/
       - name: Commit and push to documents branch
         run: |
           git add --all
