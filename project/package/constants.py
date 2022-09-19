@@ -77,7 +77,7 @@ class ColoredStreamHandler(logging.StreamHandler):
         super().emit(record)
 
 
-def setup_logger():
+def _setupLogger():
 
     log_dir: Path = HOME / "log" / TODAY
     if not log_dir.exists():
@@ -110,7 +110,12 @@ def setup_logger():
     return logger
 
 
-logger = setup_logger()
+logger = _setupLogger()
+
+
+def getChildLogger(name):
+    child_logger = logger.getChild(name)
+    return child_logger
 
 
 def print(message: str, level: str = "info"):
