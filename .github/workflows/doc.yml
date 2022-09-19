@@ -8,6 +8,8 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+env:
+  DOC_BRANCH: documents
 
 jobs:
   deploy:
@@ -45,7 +47,13 @@ jobs:
           cd ./docs
           make html ./html
           make latexpdf ./pdf
-      - name: Commit files
+      - name: Check if there is any new translations
+        id: verify_diff
         run: |
-          git commit -am "update document"
+          git diff --quiet || echo "::set-output name=new_translations_exist::true"
+      - name: Commit and push to documents branch
+        if: steps.verify_diff.outputs.new_translations_exist == 'true'
+        run: |
+          git checkout $DOC_BRANCH 2>/dev/null || git checkout -b $DOC_BRANCH
+          git commit -am "update documents"
           git push
